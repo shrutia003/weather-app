@@ -15,7 +15,7 @@ window.addEventListener('load', () => {
         navigator.geolocation.getCurrentPosition((position) => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
-            const base = 'https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric';
+            const base = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${api}&units=metric`;
 
             fetch(base)
               .then((response) => {
@@ -26,18 +26,18 @@ window.addEventListener('load', () => {
                 const place = data.name;
                 const { description, icon } = data.weather[0];
                 const { sunrise, sunset } = data.sys;
-                const iconURL = 'http://openweathermap.org/img/wn/${icon}@2x.png';
+                const iconURL = `http://openweathermap.org/img/wn/${icon}@2x.png`;
                 const fahrenheit = (temp * 9) / 5 + 32;
                 const sunriseGMT = new Date(sunrise * 1000);
                 const sunsetGMT = new Date(sunset * 1000);
 
                 iconImg.src = iconURL;
-                loc.textContent = '${place}';
-                desc.textContent = '${description}';
-                tempC.textContent = '${temp.toFixed(2)} °C';
-                tempF.textContent = '${fahrenheit.toFixed(2)} °F';
-                sunriseDOM.textContent = '${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}';
-                sunsetDOM.textContent = '${sunsetGMT.toLocaleDataString()}, ${sunsetGMT.toLocaleTimeString()}';
+                loc.textContent = `${place}`;
+                desc.textContent = `${description}`;
+                tempC.textContent = `${temp.toFixed(2)} °C`;
+                tempF.textContent = `${fahrenheit.toFixed(2)} °F`;
+                sunriseDOM.textContent = `${sunriseGMT.toLocaleDateString()}, ${sunriseGMT.toLocaleTimeString()}`;
+                sunsetDOM.textContent = `${sunsetGMT.toLocaleDataString()}, ${sunsetGMT.toLocaleTimeString()}`;
               });
         });
     }
